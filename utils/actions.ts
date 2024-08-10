@@ -31,8 +31,8 @@ export const createProfileAction = async (
     if (!user) throw new Error("Please login to create a profile");
 
     const rawData = Object.fromEntries(formData);
-   const validatedFields = validateWithZodSchema(profileSchema, rawData);
-   
+    const validatedFields = validateWithZodSchema(profileSchema, rawData);
+
     await db.profile.create({
       data: {
         clerkId: user.id,
@@ -101,4 +101,11 @@ export const updateProfileAction = async (
   } catch (error) {
     return renderError(error);
   }
+};
+
+export const updateProfileImageAction = async (
+  prevState: any,
+  formData: FormData
+): Promise<{ message: string }> => {
+  return { message: "Profile image updated successfully" };
 };
