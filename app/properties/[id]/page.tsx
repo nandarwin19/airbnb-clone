@@ -1,4 +1,6 @@
 import FavoriteToggleButton from "@/components/card/FavoriteToggleButton";
+import PropertyRating from "@/components/card/PropertyRating";
+import BookingCalendar from "@/components/properties/BookingCalendar";
 import BreadCrumbs from "@/components/properties/BreadCrumbs";
 import ImageContainer from "@/components/properties/ImageContainer";
 import ShareButton from "@/components/properties/ShareButton";
@@ -22,6 +24,18 @@ async function PropertyDetailsPage({ params }: { params: { id: string } }) {
         </div>
       </header>
       <ImageContainer mainImage={property.image} name={property.name} />
+      <section className="lg:grid lg:grid-cols-12 gap-x-12 mt-12">
+        <div className="lg:col-span-8">
+          <div className="flex gap-x-4 items-center">
+            <h1 className="text-xl font-bold">{property.name}</h1>
+            <PropertyRating inPage propertyId={property.id} />
+          </div>
+        </div>
+        <div className="lg:col-span-4 flex flex-col items-center">
+          {/* calendar */}
+          <BookingCalendar />
+        </div>
+      </section>
     </section>
   );
 }
