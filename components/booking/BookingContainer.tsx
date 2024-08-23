@@ -1,9 +1,24 @@
-import React from 'react'
+"use client";
 
-const BookingContainer = () => {
+import { useProperty } from "@/utils/store";
+import ConfirmBooking from "./ConfirmBooking";
+import BookingForm from "./BookingForm";
+function BookingContainer() {
+  // const { range } = useProperty((state) => state);
+
+  // if (!range || !range.from || !range.to) return null;
+  // if (range.to.getTime() === range.from.getTime()) return null;
+  
+  const state = useProperty((state) => state);
+  console.log(state)
+
+  
   return (
-    <div>BookingContainer</div>
-  )
+    <div className="w-full">
+      <BookingForm />
+      <ConfirmBooking />
+    </div>
+  );
 }
 
-export default BookingContainer
+export default BookingContainer;
