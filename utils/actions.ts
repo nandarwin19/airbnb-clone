@@ -402,3 +402,7 @@ export type Booking = {
   checkIn: Date;
   checkOut: Date;
 };
+
+export const createBookingAction = async () => {
+  return { message: "create booking" };
+};
