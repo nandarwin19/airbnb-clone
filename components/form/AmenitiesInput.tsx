@@ -1,21 +1,25 @@
 "use client";
+
 import { useState } from "react";
 import { amenities, Amenity } from "@/utils/amenities";
 import { Checkbox } from "@/components/ui/checkbox";
 
-function AmenitiesInput({ defaultValue }: { defaultValue?: Amenity[] }) {
-  const [selectedAmenities, setSelectedAmenities] = useState<Amenity[]>(
-    defaultValue || amenities
-  );
+interface AmenitiesInputProps {
+  defaultValue?: Amenity[];
+}
+
+function AmenitiesInput({ defaultValue }: AmenitiesInputProps) {
+  const initialAmenities = defaultValue || amenities;
+
+  // Ensuring the selectedAmenities state is an Amenity array
+  const [selectedAmenities, setSelectedAmenities] =
+    useState<Amenity[]>(initialAmenities);
 
   const handleChange = (amenity: Amenity) => {
     setSelectedAmenities((prev) => {
-      return prev.map((a) => {
-        if (a.name === amenity.name) {
-          return { ...a, selected: !a.selected };
-        }
-        return a;
-      });
+      return prev.map((a) =>
+        a.name === amenity.name ? { ...a, selected: !a.selected } : a
+      );
     });
   };
 
@@ -39,7 +43,8 @@ function AmenitiesInput({ defaultValue }: { defaultValue?: Amenity[] }) {
               className="text-sm font-medium leading-none capitalize flex gap-x-2 items-center"
             >
               {amenity.name}
-              <amenity.icon className="w-4 h-4" />
+              {/* Ensure that amenity.icon is a valid React component */}
+              {amenity.icon && <amenity.icon className="w-4 h-4" />}
             </label>
           </div>
         ))}
@@ -47,4 +52,5 @@ function AmenitiesInput({ defaultValue }: { defaultValue?: Amenity[] }) {
     </section>
   );
 }
+
 export default AmenitiesInput;
