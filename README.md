@@ -1,39 +1,53 @@
-# Prisma Query Methods: `findUnique` and `findFirst`
+# Home Away
 
-Prisma provides two powerful methods for retrieving single records from the database: `findUnique` and `findFirst`. While both methods serve the purpose of fetching a single record, they are designed for different use cases and have distinct behaviors. 
 
-## `findUnique`
+## Features
 
-Use the `findUnique` method when you want to retrieve a single record that matches a unique constraint or a primary key in your database. This method is ideal for situations where you know that the field you are querying by is guaranteed to be unique.
+- **User Authentication**: Secure login and logout functionality using Clerk to protect user accounts.
+  
+- **Rental Management**: Effortlessly create, edit, and delete rental listings, powered by Supabase for robust data management.
+  
+- **Favorites**: Users can save their favorite rentals for quick access at any time.
+  
+- **Booking System**: Integrated booking functionality allows users to reserve rentals directly through the app.
+  
+- **Review System**: Users can add and delete reviews for rentals.
+  
+- **Admin Dashboard**: A dedicated interface for admin users to manage content, users, and oversee application operations.
+  
+- **Search Bar Navigation**: Users can quickly find rentals using an intuitive search bar, enhancing the overall user experience.
 
-### Behavior:
-- Returns the record that matches the unique constraint.
-- If no record is found, it returns `null`.
+## Prerequisites
 
-### Example:
-```javascript
-const user = await prisma.user.findUnique({
-  where: { id: 1 },
-});
+Before you begin, ensure you have the following installed on your machine:
+
+- **Git**: For version control and collaboration.
+- **Node.js**: JavaScript runtime for server-side programming.
+- **npm**: Node Package Manager for managing dependencies.
+
+## Getting Started
+
+### Clone the Repository
+
+To get a local copy of the project, clone it using the following command:
+
+```bash
+git clone https://github.com/nandarwin19/home-away.git
+cd home-away
 ```
 
-## `findFirst`
+### Install Dependencies
 
-The `findFirst` method is utilized when you want to retrieve a single record that matches a non-unique constraint. This method is flexible as it allows for ordering and filtering, making it suitable for more complex queries.
+Once you’ve cloned the repository, install the necessary dependencies:
 
-### Behavior:
-- Returns the first record that matches the specified criteria.
-- If no record is found, it returns `null`.
-
-### Example:
-```javascript
-const user = await prisma.user.findFirst({
-  where: { email: 'example@example.com' },
-  orderBy: { createdAt: 'desc' },
-});
+```bash
+npm install
 ```
 
-## Summary
+### Running the Project
 
-- **Use `findUnique`** when querying by a field that is unique or a primary key.
-- **Use `findFirst`** when querying by a non-unique field or when you need to apply more complex filters and ordering.
+To start the application, use:
+
+```bash
+npm run dev
+```
